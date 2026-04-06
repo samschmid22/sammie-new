@@ -10,20 +10,57 @@ const fadeUp = {
   show: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.9, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
   }),
 };
 
 export default function Home() {
   return (
-    <main className="bg-[#080808] text-white min-h-screen overflow-x-hidden">
-      <Hero />
-      <Marquee />
-      <About />
-      <Contact />
-    </main>
+    <>
+      {/* Noise/grain texture overlay — fixed, covers entire page */}
+      <div
+        className="pointer-events-none fixed inset-0 z-[60] opacity-[0.03]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "150px 150px",
+        }}
+      />
+      <NavBar />
+      <main id="home" className="bg-[#080808] text-white min-h-screen overflow-x-hidden">
+        <Hero />
+        <Marquee />
+        <About />
+        <Employment />
+        <Projects />
+        <Contact />
+      </main>
+    </>
   );
 }
+
+const NavBar = () => (
+  <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 backdrop-blur-md bg-[#080808]/70 border-b border-white/5">
+    <span className="text-[0.65rem] uppercase tracking-[0.3em] text-white/50 font-semibold">SS</span>
+    <div className="flex gap-8">
+      {[
+        { label: "Home", href: "#home" },
+        { label: "Work", href: "#work" },
+        { label: "Projects", href: "#projects" },
+        { label: "Life", href: "#" },
+        { label: "Contact", href: "#contact" },
+      ].map(({ label, href }) => (
+        <a
+          key={label}
+          href={href}
+          className="text-[0.65rem] uppercase tracking-[0.2em] text-white/40 hover:text-white/80 transition-colors duration-200"
+        >
+          {label}
+        </a>
+      ))}
+    </div>
+  </nav>
+);
 
 const Hero = () => {
   const ref = useRef(null);
@@ -51,14 +88,14 @@ const Hero = () => {
             className="relative"
           >
             {/* Glow ring */}
-            <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-[#5ed1ff]/20 to-[#f9a8d4]/10 blur-2xl scale-110" />
-            {/* Photo frame */}
-            <div className="relative w-[320px] h-[420px] md:w-[380px] md:h-[500px] rounded-[2rem] overflow-hidden border border-white/10">
+            <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-[#5ed1ff]/20 to-[#f9a8d4]/10 blur-2xl scale-110" />
+            {/* Photo frame — taller, more cinematic */}
+            <div className="relative w-[340px] h-[480px] md:w-[420px] md:h-[580px] rounded-[2.5rem] overflow-hidden border border-white/10">
               <Image
-                src="/images/profile.png"
+                src="/sammie.jpeg"
                 alt="Samantha Schmid"
                 fill
-                className="object-cover object-[50%_15%] scale-[1.6]"
+                className="object-cover object-[50%_20%]"
                 priority
               />
               {/* Gradient overlay bottom */}
@@ -94,7 +131,7 @@ const Hero = () => {
                 initial={{ y: "110%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="block font-black uppercase text-[4rem] md:text-[5.5rem] lg:text-[6.5rem] tracking-[-0.02em] text-white"
+                className="block font-black uppercase text-[5rem] md:text-[7rem] lg:text-[8.5rem] tracking-[-0.02em] text-white"
                 style={{ fontFamily: "system-ui, sans-serif" }}
               >
                 SAMANTHA
@@ -106,7 +143,7 @@ const Hero = () => {
                 initial={{ y: "110%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.1, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="block font-black uppercase text-[4rem] md:text-[5.5rem] lg:text-[6.5rem] tracking-[-0.02em]"
+                className="block font-black uppercase text-[5rem] md:text-[7rem] lg:text-[8.5rem] tracking-[-0.02em]"
                 style={{
                   fontFamily: "system-ui, sans-serif",
                   WebkitTextStroke: "2px #5ed1ff",
@@ -205,9 +242,13 @@ const Marquee = () => {
 
   return (
     <div className="relative overflow-hidden border-y border-white/5 py-5 bg-[#080808]">
+      {/* Top gradient fade */}
+      <div className="pointer-events-none absolute top-0 left-0 right-0 h-5 bg-gradient-to-b from-[#080808] to-transparent z-10" />
+      {/* Bottom gradient fade */}
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-5 bg-gradient-to-t from-[#080808] to-transparent z-10" />
       <motion.div
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         className="flex gap-12 whitespace-nowrap"
       >
         {doubled.map((item, i) => (
@@ -222,7 +263,7 @@ const Marquee = () => {
 };
 
 const About = () => (
-  <section className="px-6 md:px-16 py-32">
+  <section id="about" className="px-6 md:px-16 py-32">
     <motion.div
       initial="hidden"
       whileInView="show"
@@ -257,8 +298,95 @@ const About = () => (
   </section>
 );
 
+const Employment = () => (
+  <section id="work" className="px-6 md:px-16 py-32 border-t border-white/5">
+    <motion.div
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+      className="max-w-6xl mx-auto"
+    >
+      <motion.p variants={fadeUp} className="text-[0.7rem] uppercase tracking-[0.35em] text-[#5ed1ff]/60 mb-6">
+        Experience
+      </motion.p>
+      <motion.h2 variants={fadeUp} className="text-[2.5rem] md:text-[4rem] font-black uppercase leading-none tracking-tight text-white mb-12">
+        Where I've worked.
+      </motion.h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[
+          { role: "Manufacturing Engineer Intern", company: "General Dynamics Mission Systems", period: "09/2025–11/2025" },
+          { role: "Powertrain Test Intern", company: "Nissan Motor Co.", period: "05/2024–08/2024" },
+        ].map((job, i) => (
+          <motion.div
+            key={job.role}
+            custom={i}
+            variants={fadeUp}
+            className="rounded-2xl border border-white/8 bg-white/[0.03] p-8 hover:border-[#5ed1ff]/20 transition-colors duration-300"
+          >
+            <p className="text-[0.68rem] uppercase tracking-[0.25em] text-[#5ed1ff]/60 mb-3">{job.period}</p>
+            <p className="text-[1.1rem] font-semibold text-white mb-1">{job.role}</p>
+            <p className="text-[0.9rem] text-white/40">{job.company}</p>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  </section>
+);
+
+const Projects = () => (
+  <section id="projects" className="px-6 md:px-16 py-32 border-t border-white/5">
+    <motion.div
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+      className="max-w-6xl mx-auto"
+    >
+      <motion.p variants={fadeUp} className="text-[0.7rem] uppercase tracking-[0.35em] text-[#5ed1ff]/60 mb-6">
+        Projects
+      </motion.p>
+      <motion.h2 variants={fadeUp} className="text-[2.5rem] md:text-[4rem] font-black uppercase leading-none tracking-tight text-white mb-12">
+        Things I've built.
+      </motion.h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[
+          { title: "RoutineOS", desc: "Turning discipline into a system", href: "https://routineos.vercel.app" },
+          { title: "Been There Done That", desc: "Interactive travel scrapbook", href: "https://travel-scrapbook.vercel.app" },
+          { title: "The Human Reset", desc: "A practical framework for health and clarity", href: null },
+          { title: "Radar-Readable Sign", desc: "Safer infrastructure for autonomous vehicles", href: null },
+        ].map((project, i) => (
+          <motion.div
+            key={project.title}
+            custom={i}
+            variants={fadeUp}
+            className="group rounded-2xl border border-white/8 bg-white/[0.03] p-8 hover:border-[#5ed1ff]/20 transition-colors duration-300"
+          >
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-[1.1rem] font-semibold text-white mb-2">{project.title}</p>
+                <p className="text-[0.9rem] leading-[1.7] text-white/40">{project.desc}</p>
+              </div>
+              {project.href && (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-4 flex-shrink-0 w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-[#5ed1ff]/40 hover:text-[#5ed1ff] transition-colors duration-200"
+                >
+                  ↗
+                </a>
+              )}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  </section>
+);
+
 const Contact = () => (
-  <section className="px-6 md:px-16 py-32 border-t border-white/5">
+  <section id="contact" className="px-6 md:px-16 py-32 border-t border-white/5">
     <motion.div
       initial="hidden"
       whileInView="show"
