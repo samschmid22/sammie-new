@@ -14,6 +14,10 @@ const fadeUp = {
   }),
 };
 
+const GlowDivider = () => (
+  <div className="w-full h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/20 to-transparent my-2" />
+);
+
 export default function Home() {
   return (
     <>
@@ -27,15 +31,25 @@ export default function Home() {
         }}
       />
       <NavBar />
-      <main id="home" className="bg-[#080808] text-white min-h-screen overflow-x-hidden">
+      <main className="bg-[#080808] text-white min-h-screen overflow-x-hidden">
         <Hero />
+        <GlowDivider />
         <Marquee />
+        <GlowDivider />
         <About />
+        <GlowDivider />
         <Employment />
+        <GlowDivider />
         <Projects />
+        <GlowDivider />
         <Life />
+        <GlowDivider />
         <Contact />
       </main>
+      <footer className="bg-[#080808] border-t border-white/5 py-8 px-16 flex justify-between items-center">
+        <span className="text-[0.65rem] uppercase tracking-[0.25em] text-white/20">© 2025 Samantha Schmid</span>
+        <span className="text-[0.65rem] uppercase tracking-[0.25em] text-white/20">Built by Sammie</span>
+      </footer>
     </>
   );
 }
@@ -76,7 +90,7 @@ const Hero = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden px-6 md:px-16">
+    <section id="home" ref={ref} className="relative min-h-screen flex items-center overflow-hidden px-6 md:px-16">
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute top-[-10rem] left-[-5rem] w-[40rem] h-[40rem] rounded-full bg-[#5ed1ff]/6 blur-[120px]" />
@@ -93,6 +107,12 @@ const Hero = () => {
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             className="relative mt-16"
           >
+            {/* Animated pulsing glow behind frame */}
+            <motion.div
+              animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.7, 0.5] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 -z-10 rounded-full blur-3xl bg-gradient-to-br from-[#5ed1ff]/10 to-[#f9a8d4]/5 w-[500px] h-[600px]"
+            />
             {/* Glow ring */}
             <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-[#5ed1ff]/20 to-[#f9a8d4]/10 blur-2xl scale-110" />
             {/* Photo frame */}
@@ -173,7 +193,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 max-w-[42ch] text-[1rem] leading-[1.85] text-white/50"
+            className="mt-8 max-w-[42ch] text-[1rem] leading-[1.85] text-white/70"
           >
             Sammie Schmid brings clarity to complex systems by seeing patterns where others see problems. Order isn't found; it's built.
           </motion.p>
@@ -188,7 +208,7 @@ const Hero = () => {
             {["MS Business Analytics", "BSE Mechanical Engineering", "ASU · 2025"].map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[0.7rem] uppercase tracking-[0.12em] text-white/60"
+                className="rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-[0.7rem] uppercase tracking-[0.12em] text-white/60"
               >
                 {tag}
               </span>
@@ -210,7 +230,7 @@ const Hero = () => {
             </Link>
             <Link
               href="#"
-              className="rounded-full border border-white/15 px-6 py-3 text-[0.78rem] font-bold uppercase tracking-[0.15em] text-white/70 transition hover:border-white/30 hover:text-white"
+              className="rounded-full border border-white/20 px-6 py-3 text-[0.78rem] font-bold uppercase tracking-[0.15em] text-white/70 transition hover:border-white/40 hover:text-white"
             >
               View Resume
             </Link>
@@ -225,7 +245,7 @@ const Hero = () => {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/30">Scroll</span>
+        <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/70">Scroll</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
@@ -252,35 +272,31 @@ const Marquee = () => {
 
   return (
     <div className="relative overflow-hidden border-y border-white/5 py-3 bg-[#080808] flex flex-col gap-3">
-      {/* Top gradient fade */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-5 bg-gradient-to-b from-[#080808] to-transparent z-10" />
-      {/* Bottom gradient fade */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-5 bg-gradient-to-t from-[#080808] to-transparent z-10" />
 
-      {/* Row 1 — left to right scroll */}
       <motion.div
         animate={{ x: ["0%", "-50%"] }}
         transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         className="flex gap-12 whitespace-nowrap"
       >
         {doubled1.map((item, i) => (
-          <span key={i} className="flex items-center gap-12 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/25">
+          <span key={i} className="flex items-center gap-12 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/70">
             {item}
-            <span className="text-[#5ed1ff]/30">✦</span>
+            <span className="text-[#5ed1ff]/40">✦</span>
           </span>
         ))}
       </motion.div>
 
-      {/* Row 2 — right to left (opposite direction) */}
       <motion.div
         animate={{ x: ["-50%", "0%"] }}
         transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         className="flex gap-12 whitespace-nowrap"
       >
         {doubled2.map((item, i) => (
-          <span key={i} className="flex items-center gap-12 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/20">
+          <span key={i} className="flex items-center gap-12 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/40">
             {item}
-            <span className="text-[#f9a8d4]/25">✦</span>
+            <span className="text-[#f9a8d4]/30">✦</span>
           </span>
         ))}
       </motion.div>
@@ -328,13 +344,13 @@ const About = () => {
               key={item.label}
               custom={i}
               variants={fadeUp}
-              className="rounded-2xl border border-white/8 bg-white/[0.03] p-8 hover:border-[#5ed1ff]/20 transition-colors duration-300"
+              className="rounded-2xl border border-white/20 bg-white/[0.06] p-8 hover:border-[#5ed1ff]/30 transition-colors duration-300"
             >
               <p className="text-[0.68rem] uppercase tracking-[0.25em] text-[#5ed1ff]/60 mb-4">{item.label}</p>
-              <p className="text-[1rem] leading-[1.8] text-white/50 mb-5">{item.value}</p>
+              <p className="text-[1rem] leading-[1.8] text-white/70 mb-5">{item.value}</p>
               <ul className="space-y-1.5">
                 {item.bullets.map((b) => (
-                  <li key={b} className="text-[0.72rem] text-white/30 tracking-wide">· {b}</li>
+                  <li key={b} className="text-[0.72rem] text-white/70 tracking-wide">· {b}</li>
                 ))}
               </ul>
             </motion.div>
@@ -389,14 +405,14 @@ const Employment = () => {
               key={job.role}
               custom={i}
               variants={fadeUp}
-              className="rounded-2xl border border-white/8 border-l-2 border-l-[#5ed1ff]/40 bg-white/[0.03] p-8 hover:border-[#5ed1ff]/20 transition-colors duration-300"
+              className="rounded-2xl border border-white/20 border-l-2 border-l-[#5ed1ff]/40 bg-white/[0.06] p-8 hover:border-[#5ed1ff]/30 transition-colors duration-300"
             >
               <p className="text-[0.68rem] uppercase tracking-[0.25em] text-[#5ed1ff]/60 mb-3">{job.period}</p>
               <p className="text-[1.15rem] font-bold text-white mb-1">{job.role}</p>
               <p className="text-[0.9rem] text-[#5ed1ff]/60 mb-5">{job.company}</p>
               <ul className="space-y-2">
                 {job.bullets.map((b) => (
-                  <li key={b} className="text-[0.82rem] leading-[1.6] text-white/40">· {b}</li>
+                  <li key={b} className="text-[0.82rem] leading-[1.6] text-white/60">· {b}</li>
                 ))}
               </ul>
             </motion.div>
@@ -409,10 +425,22 @@ const Employment = () => {
 
 const Projects = () => {
   const projects = [
-    { num: "01", title: "RoutineOS", desc: "Turning discipline into a system", href: "https://routineos.vercel.app" },
-    { num: "02", title: "Been There Done That", desc: "Interactive travel scrapbook", href: "https://travel-scrapbook.vercel.app" },
-    { num: "03", title: "The Human Reset", desc: "A practical framework for health and clarity", href: null },
-    { num: "04", title: "Radar-Readable Sign", desc: "Safer infrastructure for autonomous vehicles", href: null },
+    {
+      num: "01", title: "RoutineOS", desc: "Turning discipline into a system",
+      href: "https://routineos.vercel.app", img: "/images/routineosimage.png",
+    },
+    {
+      num: "02", title: "Been There Done That", desc: "Interactive travel scrapbook",
+      href: "https://travel-scrapbook.vercel.app", img: "/images/travelimage.png",
+    },
+    {
+      num: "03", title: "The Human Reset", desc: "A practical framework for health and clarity",
+      href: null, img: "/images/humanresetimage.png",
+    },
+    {
+      num: "04", title: "Radar-Readable Sign", desc: "Safer infrastructure for autonomous vehicles",
+      href: null, img: "/images/radarsign.png",
+    },
   ];
 
   return (
@@ -436,24 +464,32 @@ const Projects = () => {
               key={project.title}
               custom={i}
               variants={fadeUp}
-              className="group relative rounded-2xl border border-white/8 border-l-2 border-l-[#5ed1ff]/40 bg-white/[0.03] p-8 min-h-[200px] flex flex-col justify-between hover:border-[#5ed1ff]/30 hover:shadow-[0_0_30px_rgba(94,209,255,0.06)] transition-all duration-300"
+              className="group relative rounded-2xl border border-white/20 border-l-2 border-l-[#5ed1ff]/40 bg-white/[0.06] p-6 min-h-[200px] flex flex-col hover:border-[#5ed1ff]/30 hover:shadow-[0_0_30px_rgba(94,209,255,0.06)] transition-all duration-300"
             >
+              {/* Project image */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.img}
+                alt={project.title}
+                className="w-full h-[160px] object-cover rounded-xl mb-4 border border-white/20"
+              />
+
               {/* Faded number top-right */}
               <span className="absolute top-5 right-6 text-[3rem] font-black text-white/5 leading-none select-none">
                 {project.num}
               </span>
 
               <div className="flex items-start justify-between">
-                <div className="pr-16">
+                <div className="pr-12">
                   <p className="text-[1.2rem] font-bold text-white mb-2">{project.title}</p>
-                  <p className="text-[0.9rem] leading-[1.7] text-white/40">{project.desc}</p>
+                  <p className="text-[0.9rem] leading-[1.7] text-white/60">{project.desc}</p>
                 </div>
                 {project.href && (
                   <a
                     href={project.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-shrink-0 w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-[#5ed1ff]/40 hover:text-[#5ed1ff] transition-colors duration-200"
+                    className="flex-shrink-0 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-[#5ed1ff]/40 hover:text-[#5ed1ff] transition-colors duration-200"
                   >
                     ↗
                   </a>
@@ -469,8 +505,15 @@ const Projects = () => {
 
 const Life = () => {
   const places = [
-    "Cusco, Peru", "Santorini, Greece", "Paris, France", "Belize",
-    "Amsterdam", "Rome", "Cuba", "Costa Rica", "Whistler, Canada",
+    { name: "Cusco, Peru", src: "/images/pics/Peru.HEIC" },
+    { name: "Santorini, Greece", src: "/images/pics/Santorini.jpeg" },
+    { name: "Paris, France", src: "/images/pics/Paris.jpeg" },
+    { name: "Ambergris Caye, Belize", src: "/images/pics/Belize.HEIC" },
+    { name: "Amsterdam, Netherlands", src: "/images/pics/Amsterdam.jpeg" },
+    { name: "Rome, Italy", src: "/images/pics/Rome.jpeg" },
+    { name: "Havana, Cuba", src: "/images/pics/Havana.jpeg" },
+    { name: "San Jose, Costa Rica", src: "/images/pics/Costa Rica.JPG" },
+    { name: "Whistler, Canada", src: "/images/pics/Whistler.JPG" },
   ];
   const milestones = ["29029 Everesting", "7 Years Competitive Volleyball", "Team Captain"];
 
@@ -490,15 +533,23 @@ const Life = () => {
           Beyond the work.
         </motion.h2>
 
-        {/* Horizontal scroll — travel cards */}
-        <motion.div variants={fadeUp} className="overflow-x-auto pb-4 mb-10 -mx-6 px-6 [&::-webkit-scrollbar]:hidden">
+        {/* Horizontal scroll — photo travel cards */}
+        <motion.div variants={fadeUp} className="overflow-x-auto pb-4 mb-10 -mx-6 px-6 no-scrollbar">
           <div className="flex gap-4 w-max">
             {places.map((place) => (
               <div
-                key={place}
-                className="flex-shrink-0 rounded-xl border border-white/8 bg-white/[0.03] px-6 py-4 hover:border-[#5ed1ff]/20 transition-colors duration-200"
+                key={place.name}
+                className="w-[180px] flex-shrink-0 rounded-2xl overflow-hidden border border-white/20 hover:border-[#5ed1ff]/30 hover:scale-[1.02] transition-all duration-300"
               >
-                <p className="text-[0.8rem] font-medium text-white/55 whitespace-nowrap">{place}</p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={place.src}
+                  alt={place.name}
+                  className="w-full h-[220px] object-cover"
+                />
+                <div className="py-3 px-2 bg-white/[0.06]">
+                  <p className="text-[0.75rem] uppercase tracking-[0.15em] text-white/70 text-center">{place.name}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -509,7 +560,7 @@ const Life = () => {
           {milestones.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-[#5ed1ff]/20 bg-[#5ed1ff]/5 px-5 py-2 text-[0.72rem] uppercase tracking-[0.15em] text-[#5ed1ff]/70"
+              className="rounded-full border border-[#5ed1ff]/40 bg-[#5ed1ff]/5 text-[#5ed1ff] px-6 py-3 text-[0.75rem] uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(94,209,255,0.08)]"
             >
               {tag}
             </span>
@@ -530,17 +581,24 @@ const Contact = () => (
       className="max-w-6xl mx-auto"
     >
       <motion.p variants={fadeUp} className="text-[0.7rem] uppercase tracking-[0.35em] text-[#5ed1ff]/60 mb-6">Contact</motion.p>
-      <motion.h2 variants={fadeUp} className="text-[2.5rem] md:text-[3.5rem] font-black uppercase leading-none tracking-tight text-white mb-12">
+      <motion.h2 variants={fadeUp} className="text-[2.5rem] md:text-[3.5rem] font-black uppercase leading-none tracking-tight text-white mb-6">
         Let's connect.
       </motion.h2>
+      <motion.a
+        variants={fadeUp}
+        href="mailto:sammieschmid22@gmail.com"
+        className="block text-[1.5rem] md:text-[2.5rem] font-black text-white/80 hover:text-[#5ed1ff] transition-colors mb-10"
+      >
+        sammieschmid22@gmail.com
+      </motion.a>
       <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
         <Link href="mailto:sammieschmid22@gmail.com" className="rounded-full bg-[#5ed1ff] px-8 py-4 text-[0.78rem] font-bold uppercase tracking-[0.15em] text-black hover:bg-[#5ed1ff]/90 transition">
           Email me
         </Link>
-        <Link href="https://www.linkedin.com/in/samanthaschmid2/" target="_blank" className="rounded-full border border-white/15 px-8 py-4 text-[0.78rem] font-bold uppercase tracking-[0.15em] text-white/70 hover:border-white/30 hover:text-white transition">
+        <Link href="https://www.linkedin.com/in/samanthaschmid2/" target="_blank" className="rounded-full border border-white/20 px-8 py-4 text-[0.78rem] font-bold uppercase tracking-[0.15em] text-white/70 hover:border-white/40 hover:text-white transition">
           LinkedIn
         </Link>
-        <Link href="https://github.com/samschmid22" target="_blank" className="rounded-full border border-white/15 px-8 py-4 text-[0.78rem] font-bold uppercase tracking-[0.15em] text-white/70 hover:border-white/30 hover:text-white transition">
+        <Link href="https://github.com/samschmid22" target="_blank" className="rounded-full border border-white/20 px-8 py-4 text-[0.78rem] font-bold uppercase tracking-[0.15em] text-white/70 hover:border-white/40 hover:text-white transition">
           GitHub
         </Link>
       </motion.div>
