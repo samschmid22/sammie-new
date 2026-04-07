@@ -32,32 +32,32 @@ const NAV_ITEMS: Array<{ id: SectionId; label: string }> = [
 ];
 
 const HERO_TAGS = [
-  { index: "01", label: "Systems Direction" },
-  { index: "02", label: "Engineering Rigor" },
-  { index: "03", label: "Analytics Clarity" },
-  { index: "04", label: "Product Execution" },
+  "Mechanical Engineer",
+  "Business Analytics",
+  "Systems Builder",
+  "Product Storytelling",
 ];
 
 const MARQUEE_ROW_A = [
   "Mechanical Engineering",
   "Business Analytics",
-  "GSAP Motion",
-  "Process Design",
-  "Product Thinking",
+  "System Design",
+  "Process Discipline",
+  "Product Narrative",
   "Data Clarity",
-  "Execution",
+  "Travel Study",
   "RoutineOS",
 ];
 
 const MARQUEE_ROW_B = [
-  "Cinematic Portfolio",
-  "Scroll Architecture",
-  "Human Reset",
-  "Travel Scrapbook",
-  "Radar Sign",
-  "Interactive Storytelling",
+  "Editorial Portfolio",
+  "Interactive Rhythm",
+  "The Human Reset",
+  "Been There. Done That.",
+  "Radar-Readable Sign",
   "Built to Build",
   "Samantha Schmid",
+  "Arizona",
 ];
 
 const ABOUT_CARDS = [
@@ -89,23 +89,6 @@ const PROJECTS: Project[] = [
     href: "https://routineos.vercel.app",
   },
   {
-    id: "travel-scrapbook",
-    title: "Travel Scrapbook",
-    subtitle: "Been There Done That",
-    description: "A narrative archive of places and moments, designed for memory as an interactive product surface.",
-    tags: ["Travel", "Story", "Interaction"],
-    mode: "text",
-    href: "https://travel-scrapbook.vercel.app",
-  },
-  {
-    id: "human-reset",
-    title: "Human Reset",
-    subtitle: "Health framework",
-    description: "A practical structure for clarity, energy, and disciplined recovery when life gets noisy.",
-    tags: ["Health", "Systems", "Focus"],
-    mode: "text",
-  },
-  {
     id: "radar-sign",
     title: "Radar-Readable Sign",
     subtitle: "Mobility safety",
@@ -114,6 +97,23 @@ const PROJECTS: Project[] = [
     mode: "image",
     image: "/Pics/AV%20Sign.png",
     imageAlt: "Radar-readable sign concept",
+  },
+  {
+    id: "travel-scrapbook",
+    title: "Been There. Done That.",
+    subtitle: "Travel scrapbook",
+    description: "A narrative archive of places and moments, designed for memory as an interactive product surface.",
+    tags: ["Travel", "Story", "Interaction"],
+    mode: "text",
+    href: "https://travel-scrapbook.vercel.app",
+  },
+  {
+    id: "human-reset",
+    title: "The Human Reset",
+    subtitle: "Health framework",
+    description: "A practical structure for clarity, energy, and disciplined recovery when life gets noisy.",
+    tags: ["Health", "Systems", "Focus"],
+    mode: "text",
   },
 ];
 
@@ -194,10 +194,10 @@ function loopItems(items: string[]) {
 }
 
 const textCardBackground = {
-  backgroundColor: "#0b0b0b",
+  backgroundColor: "#0c0c0c",
   backgroundImage:
-    "radial-gradient(circle at 22% 22%, rgba(94,209,255,0.24), transparent 43%), radial-gradient(circle at 78% 80%, rgba(94,209,255,0.12), transparent 48%), linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
-  backgroundSize: "100% 100%, 100% 100%, 30px 30px, 30px 30px",
+    "radial-gradient(circle at 16% 18%, rgba(255,255,255,0.1), transparent 40%), radial-gradient(circle at 78% 72%, rgba(94,209,255,0.14), transparent 46%), linear-gradient(138deg, rgba(255,255,255,0.06), rgba(255,255,255,0))",
+  backgroundSize: "100% 100%, 100% 100%, 100% 100%",
 };
 
 export default function Home() {
@@ -325,8 +325,8 @@ export default function Home() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         "[data-hero-intro]",
-        { autoAlpha: 0, y: 54 },
-        { autoAlpha: 1, y: 0, duration: 1.25, stagger: 0.14, ease: "power4.out", delay: 0.18 },
+        { autoAlpha: 0, y: 44 },
+        { autoAlpha: 1, y: 0, duration: 1.35, stagger: 0.12, ease: "power3.out", delay: 0.28 },
       );
 
       gsap.fromTo(
@@ -335,33 +335,33 @@ export default function Home() {
         {
           autoAlpha: 1,
           y: 0,
-          duration: 1.05,
-          stagger: 0.09,
-          ease: "power4.out",
-          delay: 0.42,
+          duration: 1.2,
+          stagger: 0.1,
+          ease: "power3.out",
+          delay: 0.45,
         },
       );
 
       gsap.to("[data-hero-orbit]", {
         rotation: 360,
-        duration: 44,
+        duration: 56,
         repeat: -1,
         ease: "none",
       });
 
       gsap.to("[data-hero-drift='a']", {
-        x: 26,
-        y: -16,
-        duration: 9,
+        x: 12,
+        y: -8,
+        duration: 18,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
       });
 
       gsap.to("[data-hero-drift='b']", {
-        x: -18,
-        y: 14,
-        duration: 11,
+        x: -7,
+        y: 7,
+        duration: 20,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
@@ -388,14 +388,14 @@ export default function Home() {
       ScrollTrigger.create({
         trigger: "#hero",
         start: "top top",
-        end: "+=175%",
+        end: "+=185%",
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
       });
 
       gsap.to("[data-hero-parallax='slow']", {
-        yPercent: 22,
+        yPercent: 15,
         scrollTrigger: {
           trigger: "#hero",
           start: "top top",
@@ -405,7 +405,7 @@ export default function Home() {
       });
 
       gsap.to("[data-hero-parallax='fast']", {
-        yPercent: -18,
+        yPercent: -10,
         scrollTrigger: {
           trigger: "#hero",
           start: "top top",
@@ -414,31 +414,41 @@ export default function Home() {
         },
       });
 
-      const aboutCards = gsap.utils.toArray<HTMLElement>("[data-about-card]");
-      const aboutTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#about",
-          start: "top top",
-          end: `+=${aboutCards.length * 380}`,
-          scrub: 1.2,
-          pin: true,
-          anticipatePin: 1,
+      gsap.fromTo(
+        "[data-about-left]",
+        { autoAlpha: 0, y: 34 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#about",
+            start: "top 72%",
+            end: "top 35%",
+            scrub: 1,
+          },
         },
-      });
+      );
 
-      aboutTl.fromTo("[data-about-left]", { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.6 });
-
-      aboutCards.forEach((card, index) => {
-        aboutTl.fromTo(
-          card,
-          { autoAlpha: 0.05, y: 96, scale: 0.93 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: 0.62 },
-          index === 0 ? "<0.1" : ">-0.06",
+      const aboutSteps = gsap.utils.toArray<HTMLElement>("[data-about-step]");
+      aboutSteps.forEach((step) => {
+        gsap.fromTo(
+          step,
+          { autoAlpha: 0, y: 56 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: step,
+              start: "top 82%",
+              end: "top 42%",
+              scrub: 1,
+            },
+          },
         );
-
-        if (index > 0) {
-          aboutTl.to(aboutCards[index - 1], { autoAlpha: 0.18, scale: 0.94, duration: 0.38 }, "<");
-        }
       });
 
       const projectDistance = () => Math.max(0, projectsTrack.scrollWidth - window.innerWidth + 220);
@@ -457,27 +467,16 @@ export default function Home() {
         },
       });
 
-      gsap.to("[data-project-glow]", {
-        xPercent: 14,
-        yPercent: -12,
-        duration: 9,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.6,
-      });
-
       const projectCards = gsap.utils.toArray<HTMLElement>("[data-project-card]");
 
       projectCards.forEach((card) => {
         gsap.fromTo(
           card,
-          { scale: 0.88, autoAlpha: 0.4, yPercent: 6, filter: "blur(1.5px)" },
+          { scale: 0.9, autoAlpha: 0.5, yPercent: 5 },
           {
             scale: 1,
             autoAlpha: 1,
             yPercent: 0,
-            filter: "blur(0px)",
             ease: "none",
             scrollTrigger: {
               trigger: card,
@@ -490,10 +489,9 @@ export default function Home() {
         );
 
         gsap.to(card, {
-          scale: 0.9,
-          autoAlpha: 0.44,
+          scale: 0.92,
+          autoAlpha: 0.52,
           yPercent: -2,
-          filter: "blur(1.5px)",
           ease: "none",
           scrollTrigger: {
             trigger: card,
@@ -503,17 +501,36 @@ export default function Home() {
             scrub: true,
           },
         });
+
+        const projectLayers = card.querySelectorAll<HTMLElement>("[data-project-layer]");
+        projectLayers.forEach((layer, layerIndex) => {
+          gsap.fromTo(
+            layer,
+            { yPercent: layerIndex === 0 ? 6 : 14, scale: layerIndex === 0 ? 1.03 : 1.06 },
+            {
+              yPercent: layerIndex === 0 ? -4 : -10,
+              scale: layerIndex === 0 ? 1 : 1.02,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                containerAnimation: projectsTween,
+                start: "left 95%",
+                end: "right 5%",
+                scrub: true,
+              },
+            },
+          );
+        });
       });
 
       gsap.fromTo(
         "[data-job-card]",
-        { autoAlpha: 0, y: 74, scale: 0.96 },
+        { autoAlpha: 0, y: 72 },
         {
           autoAlpha: 1,
           y: 0,
-          scale: 1,
           stagger: 0.2,
-          duration: 1,
+          duration: 1.1,
           ease: "power4.out",
           scrollTrigger: {
             trigger: "#employment",
@@ -530,8 +547,8 @@ export default function Home() {
         const depth = Number(layer.dataset.lifeDepth ?? 10);
 
         gsap.to(layer, {
-          yPercent: depth,
-          rotate: depth > 15 ? 0.5 : -0.3,
+          yPercent: depth * 0.72,
+          rotate: depth > 15 ? 0.3 : -0.2,
           scrollTrigger: {
             trigger: "#life",
             start: "top bottom",
@@ -561,18 +578,9 @@ export default function Home() {
 
       gsap.to("[data-contact-orbit]", {
         rotation: 360,
-        duration: 26,
+        duration: 60,
         repeat: -1,
         ease: "none",
-      });
-
-      gsap.to("[data-contact-glow]", {
-        scale: 1.08,
-        autoAlpha: 0.72,
-        duration: 4.2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
       });
 
       NAV_ITEMS.forEach((item) => {
@@ -611,44 +619,39 @@ export default function Home() {
 
       <div
         ref={cursorRef}
-        className="pointer-events-none fixed left-0 top-0 z-[70] hidden h-[340px] w-[340px] rounded-full bg-[#5ed1ff]/10 blur-[95px] md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[70] hidden h-[260px] w-[260px] rounded-full bg-white/8 blur-[104px] md:block"
       />
 
-      <div
-        className="pointer-events-none fixed inset-0 z-[6] opacity-[0.055]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E\")",
-          backgroundRepeat: "repeat",
-          backgroundSize: "110px 110px",
-        }}
-      />
-
-      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.06]">
-        <div className="absolute -left-20 top-0 h-[28rem] w-[28rem] rounded-full bg-[#5ed1ff]/15 blur-[130px]" />
-        <div className="absolute bottom-[-8rem] right-[-9rem] h-[30rem] w-[30rem] rounded-full bg-[#5ed1ff]/10 blur-[140px]" />
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div
+          className="absolute inset-0 opacity-[0.045]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 18% 12%, rgba(255,255,255,0.15), transparent 36%), radial-gradient(circle at 84% 88%, rgba(94,209,255,0.1), transparent 40%)",
+          }}
+        />
       </div>
 
-      <header className="fixed inset-x-0 top-0 z-[90] border-b border-white/10 bg-[#080808]/82 backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-[90] border-b border-white/6 bg-[#080808]/72 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
-          <a href="#hero" className="text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-[#5ed1ff]">
-            SAMMIE
+          <a href="#hero" className="text-[0.68rem] tracking-[0.3em] text-[#5ed1ff]/88">
+            SAMMIE SCHMID
           </a>
-          <nav className="flex items-center gap-1.5 md:gap-3">
+          <nav className="flex items-center gap-4 md:gap-6">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className={`group relative rounded-full border px-3.5 py-1.5 text-[0.58rem] uppercase tracking-[0.2em] transition-all duration-300 md:text-[0.62rem] ${
+                className={`group relative py-1 text-[0.6rem] tracking-[0.11em] transition-all duration-400 md:text-[0.65rem] ${
                   activeSection === item.id
-                    ? "border-[#5ed1ff]/58 bg-[#5ed1ff]/10 text-[#5ed1ff]"
-                    : "border-white/14 text-white/56 hover:border-white/32 hover:text-white/90 hover:bg-white/[0.03]"
+                    ? "text-[#5ed1ff]"
+                    : "text-white/62 hover:text-white/90"
                 }`}
               >
                 {item.label}
                 <span
-                  className={`absolute -bottom-1 left-1/2 h-[3px] w-[3px] -translate-x-1/2 rounded-full bg-[#5ed1ff] transition-all duration-300 ${
-                    activeSection === item.id ? "opacity-100 scale-100" : "opacity-0 scale-50 group-hover:opacity-60 group-hover:scale-100"
+                  className={`absolute -bottom-0.5 left-0 h-px w-full bg-[#5ed1ff] transition-all duration-300 ${
+                    activeSection === item.id ? "opacity-100 scale-100 origin-left" : "opacity-0 scale-x-0 origin-left group-hover:opacity-65 group-hover:scale-x-100"
                   }`}
                 />
               </a>
@@ -658,140 +661,123 @@ export default function Home() {
       </header>
 
       <main className="relative z-10 pt-16">
-        <section id="hero" className="relative isolate min-h-[100svh] px-5 py-28 md:px-10 md:py-36">
+        <section id="hero" className="relative isolate min-h-[100svh] px-5 pb-24 pt-32 md:px-10 md:pb-32 md:pt-40">
           <div className="pointer-events-none absolute inset-0">
-            <div data-hero-parallax="slow" className="absolute left-[-8rem] top-0 h-[32rem] w-[32rem] rounded-full bg-[#5ed1ff]/15 blur-[128px]" />
-            <div data-hero-parallax="fast" className="absolute bottom-6 right-[-10rem] h-[24rem] w-[24rem] rounded-full bg-[#5ed1ff]/11 blur-[118px]" />
-            <div
-              data-hero-drift="a"
-              className="absolute right-[26%] top-[16%] h-[7.5rem] w-[7.5rem] rounded-full border border-[#5ed1ff]/30 bg-[#5ed1ff]/8 blur-[2px]"
-            />
-            <div data-hero-drift="b" className="absolute left-[38%] top-[54%] h-[1px] w-[8rem] bg-gradient-to-r from-transparent via-[#5ed1ff]/75 to-transparent" />
-            <div
-              className="absolute inset-0 opacity-[0.16]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
-                backgroundSize: "48px 48px",
-              }}
-            />
+            <div data-hero-parallax="slow" className="absolute left-[-5rem] top-[8%] h-[25rem] w-[19rem] rounded-[2.2rem] border border-white/8 bg-white/[0.02]" />
+            <div data-hero-parallax="fast" className="absolute bottom-[8%] right-[5%] h-[17rem] w-[13rem] rounded-[1.8rem] border border-white/8 bg-[#5ed1ff]/[0.04]" />
+            <div data-hero-drift="a" className="absolute right-[12%] top-[22%] h-14 w-14 rounded-full border border-white/18" />
+            <div data-hero-drift="b" className="absolute left-[39%] top-[62%] h-px w-24 bg-white/16" />
           </div>
 
-          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-end gap-16 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="space-y-10">
-              <p data-hero-intro className="text-[0.68rem] uppercase tracking-[0.38em] text-[#5ed1ff]/90">
-                Portfolio Studio · 2026
+          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="relative z-20 order-2 space-y-9 lg:order-1 lg:-mr-12 lg:pr-0 lg:pt-10">
+              <p data-hero-intro className="text-[0.64rem] tracking-[0.2em] text-white/54">
+                Editorial Portfolio · 2026
               </p>
 
-              <h1 className="max-w-[12ch] text-5xl font-black uppercase leading-[0.88] tracking-[-0.03em] sm:text-7xl lg:text-[7.8rem]">
+              <h1 className="max-w-[11ch] font-serif text-[3.1rem] leading-[0.88] tracking-[-0.02em] text-white sm:text-[4.7rem] lg:text-[6.8rem]">
                 <span data-hero-word className="block">
                   Samantha
                 </span>
-                <span data-hero-word className="block text-transparent [-webkit-text-stroke:1.5px_#5ed1ff]">
+                <span data-hero-word className="block text-white/88">
                   Schmid
                 </span>
               </h1>
 
-              <p data-hero-intro className="max-w-[58ch] text-[1rem] leading-8 text-white/78 md:text-[1.12rem]">
-                Designing disciplined systems for complex, high-noise environments across engineering, analytics, and
-                product. The experience below is intentionally cinematic, paced, and built around motion clarity.
+              <p data-hero-intro className="max-w-[54ch] text-[1rem] leading-8 text-white/74 md:text-[1.08rem]">
+                Mechanical engineer and analytics graduate student translating structure into products, stories, and
+                systems that hold up under real-world pressure.
               </p>
 
-              <div data-hero-intro className="grid max-w-2xl gap-2.5 sm:grid-cols-2">
-                {HERO_TAGS.map((tag) => (
-                  <div
-                    key={tag.index}
-                    className="group flex items-center justify-between rounded-2xl border border-white/14 bg-white/[0.03] px-4 py-3 transition-all duration-400 hover:border-[#5ed1ff]/35 hover:bg-white/[0.05]"
-                  >
-                    <span className="text-[0.54rem] font-semibold tracking-[0.24em] text-[#5ed1ff]/80">{tag.index}</span>
-                    <span className="text-[0.66rem] uppercase tracking-[0.18em] text-white/78">{tag.label}</span>
-                  </div>
+              <div data-hero-intro className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                {HERO_TAGS.map((tag, index) => (
+                  <span key={tag} className="text-[0.71rem] tracking-[0.12em] text-white/56">
+                    {tag}
+                    {index !== HERO_TAGS.length - 1 && <span className="ml-4 text-white/28">/</span>}
+                  </span>
                 ))}
               </div>
 
-              <div data-hero-intro className="flex flex-wrap gap-3 pt-1">
+              <div data-hero-intro className="flex items-center gap-8 pt-3">
                 <Link
                   href="mailto:sammieschmid22@gmail.com"
-                  className="rounded-full border border-[#5ed1ff]/65 bg-[#5ed1ff] px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.18em] text-black shadow-[0_8px_30px_rgba(94,209,255,0.24)] transition-all duration-300 hover:translate-y-[-1px] hover:shadow-[0_12px_36px_rgba(94,209,255,0.36)]"
+                  className="inline-flex items-center gap-2 text-[0.74rem] tracking-[0.14em] text-[#5ed1ff] transition-colors duration-300 hover:text-white"
                 >
-                  Contact
+                  Email
+                  <span className="inline-block h-px w-8 bg-current" />
                 </Link>
                 <Link
                   href="https://www.linkedin.com/in/samanthaschmid2/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-white/20 bg-white/[0.02] px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.18em] text-white/86 transition-all duration-300 hover:border-[#5ed1ff]/45 hover:text-[#5ed1ff]"
+                  className="text-[0.74rem] tracking-[0.14em] text-white/64 transition-colors duration-300 hover:text-white"
                 >
                   LinkedIn
                 </Link>
               </div>
             </div>
 
-            <div data-hero-intro className="mx-auto w-full max-w-[470px] [perspective:1700px]">
-              <div ref={heroStageRef} className="relative [transform-style:preserve-3d]">
+            <div data-hero-intro className="order-1 mx-auto w-full max-w-[680px] lg:order-2 lg:translate-x-7 [perspective:1800px]">
+              <div ref={heroStageRef} className="relative h-[520px] [transform-style:preserve-3d] sm:h-[620px]">
+                <div data-hero-depth="0.8" className="absolute left-[2%] top-[12%] h-[72%] w-[74%] rounded-[2rem] border border-white/7 bg-black/35 shadow-[0_40px_90px_rgba(0,0,0,0.55)]" />
+                <div
+                  data-hero-depth="1.5"
+                  className="absolute right-[1%] top-[8%] h-[66%] w-[48%] overflow-hidden rounded-[1.45rem] border border-white/15 bg-black/30 shadow-[0_20px_55px_rgba(0,0,0,0.4)]"
+                >
+                  <Image src="/sammie.jpeg" alt="Samantha portrait layer" fill className="object-cover object-[50%_18%]" sizes="50vw" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/58 via-black/12 to-transparent" />
+                </div>
+
                 <div
                   data-hero-depth="2"
                   data-hero-orbit
-                  className="pointer-events-none absolute inset-[-2.4rem] rounded-[2.5rem] border border-[#5ed1ff]/24"
-                />
-                <div
-                  data-hero-depth="1"
-                  className="pointer-events-none absolute -left-6 -top-6 h-48 w-48 rounded-full bg-[#5ed1ff]/22 blur-[78px]"
-                />
-                <div
-                  data-hero-depth="1.7"
-                  className="pointer-events-none absolute -bottom-8 right-[-1.2rem] h-44 w-44 rounded-full bg-[#5ed1ff]/15 blur-[76px]"
+                  className="pointer-events-none absolute left-[2%] top-[5%] h-[82%] w-[64%] rounded-[2.1rem] border border-white/9"
                 />
 
                 <div
-                  data-hero-depth="1.2"
-                  className="relative aspect-[3/4] overflow-hidden rounded-[2.1rem] border border-white/22 bg-black/35 shadow-[0_0_75px_rgba(94,209,255,0.2)]"
+                  data-hero-depth="1.1"
+                  className="absolute left-[-2%] top-[14%] h-[80%] w-[70%] overflow-hidden rounded-[2rem] bg-black/35 shadow-[0_28px_78px_rgba(0,0,0,0.52)]"
                 >
-                  <div
-                    data-hero-depth="0.5"
-                    className="pointer-events-none absolute inset-0 opacity-[0.16]"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-                      backgroundSize: "26px 26px",
-                    }}
-                  />
                   <Image
                     src="/sammie.jpeg"
                     alt="Portrait of Samantha Schmid"
                     fill
                     priority
                     className="object-cover object-[50%_18%] scale-[1.02]"
-                    sizes="(max-width: 1024px) 82vw, 470px"
+                    sizes="(max-width: 1024px) 86vw, 620px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/12 to-transparent" />
                   <div
                     data-hero-sheen
-                    className="pointer-events-none absolute -left-[40%] top-[-30%] h-[170%] w-[60%] rotate-[20deg] bg-gradient-to-r from-transparent via-[#5ed1ff]/30 to-transparent opacity-55 mix-blend-screen"
+                    className="pointer-events-none absolute -left-[42%] top-[-24%] h-[150%] w-[56%] rotate-[18deg] bg-gradient-to-r from-transparent via-white/16 to-transparent opacity-32"
                   />
-                  <div className="absolute bottom-5 left-5 right-5 border-t border-[#5ed1ff]/42 pt-3">
-                    <p className="text-[0.62rem] uppercase tracking-[0.22em] text-[#5ed1ff]/90">Portfolio · Systems + Motion</p>
-                  </div>
                 </div>
+
+                <p data-hero-depth="0.75" className="absolute left-[4%] top-[6%] text-[0.58rem] tracking-[0.18em] text-white/54">
+                  portrait study · arizona
+                </p>
+                <p data-hero-depth="0.6" className="absolute bottom-1 right-1 max-w-[18ch] text-right font-serif text-[1.14rem] leading-snug text-white/72">
+                  Building precise systems with an editorial point of view.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="relative overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-6">
+        <section className="relative overflow-hidden border-y border-white/7 bg-[#090909] py-5">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-28 bg-gradient-to-r from-[#080808] to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-28 bg-gradient-to-l from-[#080808] to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/35 to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/20 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/18 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/12 to-transparent" />
 
           <div ref={marqueeTopRef} className="mb-3 flex w-max gap-10 whitespace-nowrap">
             {loopItems(MARQUEE_ROW_A).map((item, index) => (
               <span
                 key={`row-a-${item}-${index}`}
-                className="flex items-center gap-10 text-[0.64rem] font-semibold uppercase tracking-[0.24em] text-white/74"
+                className="flex items-center gap-10 text-[0.62rem] tracking-[0.16em] text-white/66"
               >
                 {item}
-                <span className="text-[#5ed1ff]/58">✦</span>
+                <span className="text-[#5ed1ff]/36">•</span>
               </span>
             ))}
           </div>
@@ -800,46 +786,37 @@ export default function Home() {
             {loopItems(MARQUEE_ROW_B).map((item, index) => (
               <span
                 key={`row-b-${item}-${index}`}
-                className="flex items-center gap-10 text-[0.64rem] font-semibold uppercase tracking-[0.24em] text-white/48"
+                className="flex items-center gap-10 text-[0.62rem] tracking-[0.16em] text-white/46"
               >
                 {item}
-                <span className="text-[#5ed1ff]/34">✦</span>
+                <span className="text-[#5ed1ff]/28">•</span>
               </span>
             ))}
           </div>
         </section>
 
-        <section id="about" className="relative min-h-[100svh] px-5 py-24 md:px-10 md:py-30">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/24 to-transparent" />
-          <div className="mx-auto grid w-full max-w-7xl items-start gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div data-about-left className="space-y-8">
-              <p className="text-[0.68rem] uppercase tracking-[0.34em] text-[#5ed1ff]/82">About · Built to Build</p>
-              <h2 className="text-4xl font-black uppercase leading-[0.9] tracking-tight md:text-6xl">
-                Built to
-                <span className="block text-transparent [-webkit-text-stroke:1.3px_#5ed1ff]">build.</span>
+        <section id="about" className="relative min-h-[100svh] px-5 py-24 md:px-10 md:py-32">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent" />
+          <div className="mx-auto grid w-full max-w-7xl items-start gap-14 lg:grid-cols-[0.82fr_1.18fr]">
+            <div data-about-left className="space-y-8 lg:sticky lg:top-28">
+              <p className="text-[0.64rem] tracking-[0.2em] text-[#5ed1ff]/74">About · Built to Build</p>
+              <h2 className="max-w-[10ch] font-serif text-4xl leading-[0.95] tracking-tight md:text-6xl">
+                Built to build.
               </h2>
-              <p className="max-w-[44ch] text-sm leading-7 text-white/74 md:text-base">
-                The left column stays grounded while the right unfolds in sequence. Engineering sets structure.
-                Analytics sharpens signal. Product execution turns both into outcomes.
+              <p className="max-w-[42ch] text-sm leading-7 text-white/72 md:text-base">
+                Engineering gives me structure. Analytics gives me signal. Product work turns both into tools people
+                can actually use.
               </p>
             </div>
 
-            <div className="relative h-[450px] md:h-[500px]">
+            <div className="space-y-24 pb-6">
               {ABOUT_CARDS.map((card, index) => (
-                <article
-                  key={card.title}
-                  data-about-card
-                  className="absolute inset-0 overflow-hidden rounded-[1.8rem] border border-white/14 bg-[#0d0d0d]/95 p-7 shadow-[0_18px_40px_rgba(0,0,0,0.35)] md:p-10"
-                  style={{ zIndex: ABOUT_CARDS.length - index }}
-                >
-                  <div className="pointer-events-none absolute inset-0 opacity-[0.18]" style={textCardBackground} />
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/35 to-transparent" />
-                  <span className="absolute right-6 top-6 text-[0.62rem] font-semibold tracking-[0.22em] text-[#5ed1ff]/72">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-[0.64rem] uppercase tracking-[0.2em] text-[#5ed1ff]/84">{card.meta}</p>
-                  <h3 className="mt-5 max-w-[14ch] text-2xl font-black uppercase tracking-tight md:text-3xl">{card.title}</h3>
-                  <p className="mt-4 max-w-[44ch] text-sm leading-7 text-white/74 md:text-[0.98rem]">{card.text}</p>
+                <article key={card.title} data-about-step className="relative pl-12">
+                  <span className="absolute left-0 top-1 text-[0.66rem] tracking-[0.18em] text-[#5ed1ff]/72">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="absolute left-5 top-0 h-full w-px bg-gradient-to-b from-white/35 via-white/10 to-transparent" />
+                  <p className="text-[0.6rem] tracking-[0.16em] text-white/50">{card.meta}</p>
+                  <h3 className="mt-3 max-w-[16ch] font-serif text-[2rem] leading-tight md:text-[2.65rem]">{card.title}</h3>
+                  <p className="mt-4 max-w-[56ch] text-sm leading-7 text-white/72 md:text-[1rem]">{card.text}</p>
                 </article>
               ))}
             </div>
@@ -847,11 +824,11 @@ export default function Home() {
         </section>
 
         <section id="projects" className="relative min-h-[100svh] px-5 py-24 md:px-10 md:py-30">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/24 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/18 to-transparent" />
           <div className="mb-10 max-w-5xl">
-            <p className="text-[0.68rem] uppercase tracking-[0.34em] text-[#5ed1ff]/82">Projects</p>
-            <h2 className="mt-3 max-w-5xl text-3xl font-black uppercase leading-[0.94] tracking-tight md:text-6xl">
-              Case-study panels built for depth.
+            <p className="text-[0.64rem] tracking-[0.2em] text-[#5ed1ff]/72">Projects</p>
+            <h2 className="mt-3 max-w-5xl font-serif text-4xl leading-[0.95] tracking-tight md:text-6xl">
+              Featured work, paced as scenes.
             </h2>
             <p className="mt-4 max-w-[58ch] text-sm leading-7 text-white/72 md:text-base">
               The scroll track prioritizes narrative pacing and hierarchy. Real visuals are used where available.
@@ -861,49 +838,60 @@ export default function Home() {
 
           <div className="overflow-hidden">
             <div ref={projectsTrackRef} className="flex w-max gap-8 md:gap-10">
-              {PROJECTS.map((project) => (
+              {PROJECTS.map((project, index) => (
                 <article
                   key={project.id}
                   data-project-card
-                  className="project-card group relative min-h-[69vh] w-[84vw] max-w-[980px] overflow-hidden rounded-[2.15rem] border border-white/14 bg-[#0e0e0e] transition-[border-color,box-shadow] duration-500 hover:border-[#5ed1ff]/44 hover:shadow-[0_18px_48px_rgba(94,209,255,0.12)] md:w-[74vw]"
+                  className="project-card group relative min-h-[72vh] w-[88vw] max-w-[1080px] overflow-hidden rounded-[2.1rem] border border-white/8 bg-[#0d0d0d] transition-[border-color] duration-500 hover:border-white/16 md:w-[76vw]"
                 >
                   {project.mode === "image" && project.image ? (
                     <div className="absolute inset-0">
-                      <Image
-                        src={project.image}
-                        alt={project.imageAlt ?? `${project.title} preview`}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                        sizes="(max-width: 1024px) 85vw, 70vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/44 to-black/14" />
+                      <div data-project-layer className="absolute inset-0">
+                        <Image
+                          src={project.image}
+                          alt={project.imageAlt ?? `${project.title} preview`}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                          sizes="(max-width: 1024px) 85vw, 70vw"
+                        />
+                      </div>
+                      <div data-project-layer className="absolute right-[6%] top-[10%] h-[42%] w-[31%] overflow-hidden rounded-[1.35rem] border border-white/18 bg-black/28">
+                        <Image
+                          src={project.image}
+                          alt=""
+                          fill
+                          aria-hidden
+                          className="object-cover object-[74%_50%] scale-[1.1]"
+                          sizes="(max-width: 1024px) 36vw, 24vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/42 to-black/10" />
+                      <div className="pointer-events-none absolute inset-x-9 top-[18%] h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                     </div>
                   ) : (
                     <>
                       <div className="absolute inset-0" style={textCardBackground} />
-                      <div
-                        data-project-glow
-                        className="pointer-events-none absolute -left-[18%] top-[-26%] h-[70%] w-[60%] rounded-full bg-[#5ed1ff]/22 blur-[78px]"
-                      />
-                      <div
-                        className="pointer-events-none absolute right-[-20%] top-[36%] h-[46%] w-[58%] rounded-full bg-[#5ed1ff]/12 blur-[72px]"
-                        data-project-glow
-                      />
+                      <div data-project-layer className="pointer-events-none absolute inset-0 opacity-[0.26]" style={{ backgroundImage: "linear-gradient(120deg, rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(30deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "34px 34px, 34px 34px" }} />
+                      <div data-project-layer className="pointer-events-none absolute right-[7%] top-[14%] h-[40%] w-[33%] rounded-[1.3rem] border border-white/12 bg-black/24" />
+                      <div className="pointer-events-none absolute inset-x-8 top-[22%] h-px bg-gradient-to-r from-transparent via-white/28 to-transparent" />
                     </>
                   )}
 
-                  <div className="relative z-10 flex h-full flex-col justify-end p-8 md:p-11">
-                    <p className="text-[0.62rem] uppercase tracking-[0.2em] text-[#5ed1ff]/90">{project.subtitle}</p>
-                    <h3 className="mt-2 max-w-[14ch] text-3xl font-black uppercase leading-[0.92] tracking-tight md:text-[3.35rem]">
+                  <div className="relative z-10 flex h-full flex-col justify-end p-8 md:p-12">
+                    <p className="text-[0.6rem] tracking-[0.16em] text-[#5ed1ff]/74">
+                      {String(index + 1).padStart(2, "0")} · {project.subtitle}
+                    </p>
+                    <h3 className="mt-3 max-w-[14ch] font-serif text-3xl leading-[0.93] tracking-tight md:text-[3.6rem]">
                       {project.title}
                     </h3>
-                    <p className="mt-5 max-w-[52ch] text-sm leading-7 text-white/78 md:text-[1.03rem]">{project.description}</p>
+                    <p className="mt-5 max-w-[54ch] text-sm leading-7 text-white/78 md:text-[1.02rem]">{project.description}</p>
 
-                    <div className="mt-6 flex flex-wrap gap-2.5">
+                    <div className="mt-7 flex flex-wrap gap-2.5">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-white/18 bg-black/45 px-3 py-1.5 text-[0.54rem] uppercase tracking-[0.16em] text-white/82"
+                          className="rounded-full border border-white/14 bg-black/28 px-3 py-1.5 text-[0.53rem] tracking-[0.12em] text-white/78"
                         >
                           {tag}
                         </span>
@@ -915,9 +903,10 @@ export default function Home() {
                         href={project.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-7 inline-flex w-fit rounded-full border border-[#5ed1ff]/65 bg-[#5ed1ff]/14 px-5 py-2.5 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-[#5ed1ff] transition-all duration-300 hover:border-[#5ed1ff] hover:bg-[#5ed1ff]/22 hover:translate-y-[-1px]"
+                        className="mt-8 inline-flex w-fit items-center gap-2 text-[0.66rem] tracking-[0.15em] text-[#5ed1ff] transition-colors duration-300 hover:text-white"
                       >
-                        Open Project ↗
+                        Open Project
+                        <span className="inline-block h-px w-8 bg-current" />
                       </a>
                     )}
                   </div>
@@ -928,30 +917,28 @@ export default function Home() {
         </section>
 
         <section id="employment" className="relative min-h-[100svh] px-5 py-26 md:px-10 md:py-32">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/22 to-transparent" />
-          <div className="mx-auto w-full max-w-7xl">
-            <p className="text-[0.68rem] uppercase tracking-[0.34em] text-[#5ed1ff]/82">Employment</p>
-            <h2 className="mt-4 text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">Experience timeline.</h2>
-            <p className="mt-4 max-w-[54ch] text-sm leading-7 text-white/72 md:text-base">
-              A concise record of high-accountability environments and the systems-level work delivered in each.
-            </p>
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent" />
+          <div className="mx-auto grid w-full max-w-7xl items-start gap-14 lg:grid-cols-[0.78fr_1.22fr]">
+            <div className="space-y-7 lg:sticky lg:top-28">
+              <p className="text-[0.64rem] tracking-[0.2em] text-[#5ed1ff]/72">Employment</p>
+              <h2 className="max-w-[12ch] font-serif text-4xl leading-[0.95] tracking-tight md:text-6xl">Experience timeline.</h2>
+              <p className="max-w-[40ch] text-sm leading-7 text-white/72 md:text-base">
+                High-accountability environments where process rigor, testing discipline, and execution quality were non-negotiable.
+              </p>
+            </div>
 
-            <div className="relative mt-12 grid gap-6 lg:grid-cols-2">
-              <div className="pointer-events-none absolute bottom-0 left-2 top-2 hidden w-px bg-gradient-to-b from-[#5ed1ff]/62 to-transparent lg:block" />
+            <div className="relative space-y-14 border-l border-white/10 pl-8 md:pl-12">
               {EMPLOYMENT.map((job) => (
                 <article
                   key={job.role}
                   data-job-card
-                  className="group relative overflow-hidden rounded-[1.8rem] border border-white/14 bg-[#0d0d0d]/94 p-7 transition-all duration-400 hover:border-[#5ed1ff]/40 hover:bg-[#101010] md:p-8"
+                  className="group relative pb-2"
                 >
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/38 to-transparent" />
-                  <span className="absolute right-6 top-6 text-[0.6rem] font-semibold tracking-[0.2em] text-[#5ed1ff]/72">
-                    {job.period.slice(0, 4)}
-                  </span>
-                  <p className="text-[0.62rem] uppercase tracking-[0.2em] text-[#5ed1ff]/86">{job.period}</p>
-                  <h3 className="mt-3 max-w-[20ch] text-xl font-semibold md:text-2xl">{job.role}</h3>
-                  <p className="mt-1 text-sm text-white/66">{job.company}</p>
-                  <ul className="mt-5 space-y-2 text-sm leading-6 text-white/76">
+                  <span className="absolute -left-[2.25rem] top-1 h-2.5 w-2.5 rounded-full border border-[#5ed1ff]/60 bg-[#080808]" />
+                  <p className="text-[0.6rem] tracking-[0.16em] text-[#5ed1ff]/74">{job.period}</p>
+                  <h3 className="mt-3 max-w-[24ch] font-serif text-2xl leading-tight md:text-[2.2rem]">{job.role}</h3>
+                  <p className="mt-2 text-sm text-white/60">{job.company}</p>
+                  <ul className="mt-5 space-y-2 text-sm leading-7 text-white/74 md:text-[0.98rem]">
                     {job.highlights.map((item) => (
                       <li key={item}>• {item}</li>
                     ))}
@@ -963,36 +950,38 @@ export default function Home() {
         </section>
 
         <section id="life" className="relative min-h-[100svh] px-5 py-26 md:px-10 md:py-32">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/22 to-transparent" />
-          <div className="mx-auto w-full max-w-7xl">
-            <p className="text-[0.68rem] uppercase tracking-[0.34em] text-[#5ed1ff]/82">Life · Beyond the Work</p>
-            <h2 className="mt-4 max-w-4xl text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              Curated travel frames.
-            </h2>
-            <p className="mt-4 max-w-[56ch] text-sm leading-7 text-white/72 md:text-base">
-              Personal context, presented with the same editorial discipline as the rest of the portfolio.
-            </p>
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent" />
+          <div className="mx-auto grid w-full max-w-7xl items-start gap-14 lg:grid-cols-[0.78fr_1.22fr]">
+            <div className="space-y-7 lg:sticky lg:top-28">
+              <p className="text-[0.64rem] tracking-[0.2em] text-[#5ed1ff]/72">Life · Beyond the Work</p>
+              <h2 className="max-w-[12ch] font-serif text-4xl leading-[0.95] tracking-tight md:text-6xl">
+                Curated travel frames.
+              </h2>
+              <p className="max-w-[38ch] text-sm leading-7 text-white/72 md:text-base">
+                Personal context, arranged as a visual sequence rather than a standard gallery.
+              </p>
+            </div>
 
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
-              {LIFE_IMAGES.map((image) => (
+            <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-12">
+              {LIFE_IMAGES.map((image, index) => (
                 <article
                   key={image.src}
                   data-life-depth={image.depth}
-                  className={`group overflow-hidden rounded-2xl border border-white/14 bg-black/20 transition-all duration-500 hover:border-[#5ed1ff]/35 ${image.layoutClass}`}
+                  className={`group ${image.layoutClass} ${
+                    index === 1 ? "lg:translate-y-10" : ""
+                  } ${index === 3 ? "lg:-translate-y-6" : ""} ${index === 5 ? "lg:translate-y-4" : ""}`}
                 >
-                  <div className={`relative ${image.aspectClass}`}>
+                  <div className={`relative overflow-hidden rounded-[1.7rem] ${image.aspectClass}`}>
                     <Image
                       src={image.src}
                       alt={image.alt}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover transition-transform duration-900 group-hover:scale-[1.035]"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 80vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/74 via-transparent to-transparent" />
-                    <p className="absolute bottom-3 left-3 rounded-full border border-white/20 bg-black/55 px-3 py-1 text-[0.54rem] uppercase tracking-[0.16em] text-white/88">
-                      {image.alt}
-                    </p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-black/8 to-transparent" />
                   </div>
+                  <p className="mt-3 text-[0.63rem] tracking-[0.16em] text-white/64">{image.alt}</p>
                 </article>
               ))}
             </div>
@@ -1001,50 +990,52 @@ export default function Home() {
 
         <section id="contact" className="relative min-h-[88svh] px-5 py-28 md:px-10 md:py-34">
           <div className="pointer-events-none absolute inset-0">
-            <div data-contact-glow className="absolute left-[14%] top-[20%] h-56 w-56 rounded-full bg-[#5ed1ff]/18 blur-[100px]" />
             <div
               data-contact-orbit
-              className="absolute right-[10%] top-[24%] h-40 w-40 rounded-full border border-[#5ed1ff]/32"
+              className="absolute right-[10%] top-[24%] h-44 w-44 rounded-full border border-white/14"
             />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5ed1ff]/24 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent" />
           </div>
-          <div className="mx-auto w-full max-w-7xl space-y-9">
-            <p data-contact-intro className="text-[0.68rem] uppercase tracking-[0.34em] text-[#5ed1ff]/82">
+          <div className="mx-auto w-full max-w-7xl space-y-10">
+            <p data-contact-intro className="text-[0.64rem] tracking-[0.2em] text-[#5ed1ff]/72">
               Contact
             </p>
-            <h2 data-contact-intro className="max-w-4xl text-4xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">
-              Let&apos;s build
-              <span className="block text-transparent [-webkit-text-stroke:1.4px_#5ed1ff]">something precise.</span>
+            <h2 data-contact-intro className="max-w-4xl font-serif text-4xl leading-[0.9] tracking-tight md:text-7xl">
+              Let&apos;s build something
+              <span className="block text-white/72">precise and lasting.</span>
             </h2>
             <a
               data-contact-intro
               href="mailto:sammieschmid22@gmail.com"
-              className="block text-2xl font-semibold text-[#5ed1ff] md:text-5xl hover:text-[#76dcff]"
+              className="block text-2xl text-[#5ed1ff] transition-colors duration-300 hover:text-white md:text-5xl"
             >
               sammieschmid22@gmail.com
             </a>
-            <div data-contact-intro className="flex flex-wrap gap-3">
+            <div data-contact-intro className="flex flex-wrap items-center gap-7 pt-2">
               <a
                 href="mailto:sammieschmid22@gmail.com"
-                className="rounded-full border border-[#5ed1ff]/68 bg-[#5ed1ff] px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.18em] text-black shadow-[0_10px_30px_rgba(94,209,255,0.25)] transition-all duration-300 hover:translate-y-[-1px] hover:shadow-[0_14px_38px_rgba(94,209,255,0.38)]"
+                className="inline-flex items-center gap-2 text-[0.68rem] tracking-[0.16em] text-[#5ed1ff] transition-colors duration-300 hover:text-white"
               >
                 Email
+                <span className="inline-block h-px w-8 bg-current" />
               </a>
               <a
                 href="https://www.linkedin.com/in/samanthaschmid2/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-white/20 bg-white/[0.02] px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.18em] text-white/86 transition-all duration-300 hover:border-[#5ed1ff]/45 hover:text-[#5ed1ff]"
+                className="inline-flex items-center gap-2 text-[0.68rem] tracking-[0.16em] text-white/70 transition-colors duration-300 hover:text-white"
               >
                 LinkedIn
+                <span className="inline-block h-px w-8 bg-current" />
               </a>
               <a
                 href="https://github.com/samschmid22"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-white/20 bg-white/[0.02] px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.18em] text-white/86 transition-all duration-300 hover:border-[#5ed1ff]/45 hover:text-[#5ed1ff]"
+                className="inline-flex items-center gap-2 text-[0.68rem] tracking-[0.16em] text-white/70 transition-colors duration-300 hover:text-white"
               >
                 GitHub
+                <span className="inline-block h-px w-8 bg-current" />
               </a>
             </div>
           </div>
